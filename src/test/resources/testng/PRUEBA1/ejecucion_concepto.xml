@@ -6,18 +6,26 @@
 
 	<parameter name="URL_PRINCIPAL"
 		value="http://automationpractice.com/index.php" />
+		
+			<!-- Excel del test -->
+	<parameter name="ingreso"
+		value="src/test/resources/excels/Test/Datos.xlsx" />
+	<parameter name="hoja1" value="Login" />
+	
 
 	<parameter name="nombre" value="Jose" />
 	<parameter name="apellido" value="Rojas" />
 	<parameter name="pass" value="123456" />
+	
+
 
 	<test name="TestBase">
 		<classes>
 			<class name="cl.empresa.qa.tests.TestConcepto">
 				<methods>
-					<include name="crearRegistro" />
+<!-- 					<include name="crearRegistro" /> -->
  					<include name="loginUsuario" /> 
-					<include name="crearRegistroConTelefonoCasa" /> 
+<!-- 					<include name="crearRegistroConTelefonoCasa" />  -->
 				</methods>
 			</class>
 		</classes>

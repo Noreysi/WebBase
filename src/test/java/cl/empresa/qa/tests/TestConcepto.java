@@ -24,6 +24,7 @@ import cl.empresa.qa.helpers.Helper;
 import cl.empresa.qa.pages.LoginPage;
 import cl.empresa.qa.pages.PaginaPrincipalPage;
 import cl.empresa.qa.pages.RegistroPage;
+import cl.empresa.qa.vo.LoginVO;
 
 public class TestConcepto {
 	private WebDriver driver;
@@ -52,7 +53,7 @@ public class TestConcepto {
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability("Empresa", "Tecnova");
 		System.setProperty("webdriver.chrome.driver", "DRIVERS/chromedriver.exe");
-		Helper.robotMoveMouse(2000, 2000);
+		//Helper.robotMoveMouse(2000, 2000);
 		driver = new ChromeDriver();
 		//Implicit Waits No usar si se estan usando explicit wait
 		driver.manage().timeouts().implicitlyWait(WAITING, TimeUnit.SECONDS);
@@ -78,14 +79,16 @@ public class TestConcepto {
 	}
 
 	@Test
-	public void loginUsuario() {
+	@Parameters({ "ingreso", "hoja1"})
+	public void loginUsuario(String ingreso, String hoja1) {
 		String subDir = SUBDIR + Thread.currentThread().getStackTrace()[1].getMethodName();
 		test = extent.startTest("Prueba CONCEPTO más", "Probando conceptos MáS.");
 		test.log(LogStatus.INFO, "Prueba inicial conceptos");
+		LoginVO datosVO = new LoginVO(ingreso,hoja1);
 		PaginaPrincipalPage principal = new PaginaPrincipalPage(driver, test, TAKE_SS, 20);
 		LoginPage login = new LoginPage(driver, test, TAKE_SS, 20);
 		principal.clickLogin();
-		login.loginMetodo("correfdf6@correo.com", "123456");
+		login.loginMetodo(datosVO.getUserVO(),datosVO.getPassVO());
 		login.assertIngreso("MY ACCOUNT");
 
 	}
