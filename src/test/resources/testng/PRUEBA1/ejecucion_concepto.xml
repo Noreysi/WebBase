@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Automation_Concepts_Project">
+
+
+	<parameter name="URL_PRINCIPAL"
+		value="http://automationpractice.com/index.php" />
+
+	<parameter name="nombre" value="Jose" />
+	<parameter name="apellido" value="Rojas" />
+	<parameter name="pass" value="123456" />
+
+	<test name="TestBase">
+		<classes>
+			<class name="cl.empresa.qa.tests.TestConcepto">
+				<methods>
+					<include name="crearRegistro" />
+ 					<include name="loginUsuario" /> 
+					<include name="crearRegistroConTelefonoCasa" /> 
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
